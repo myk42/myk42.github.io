@@ -1,0 +1,79 @@
+---
+import "../styles/global.css";
+import { Menu } from "@lucide/astro";
+import HeaderLogo from "../images/logo.svg";
+import FooterLogo from "../images/footer.svg";
+import FancyHoverLink from "../components/links/FancyHoverLink.astro";
+import SimpleHoverLink from "../components/links/SimpleHoverLink.astro";
+import NavigationLinks from "../components/links/NavigationLinks.astro";
+import GithubIcon from "../components/icons/GithubIcon.astro";
+import MastodonIcon from "../components/icons/MastodonIcon.astro";
+import MatrixIcon from "../components/icons/MatrixIcon.astro";
+
+const { title = "myk's Website", image = "/favicon.png", description = "myk's website" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:image" content={image} />
+    <meta property="og:site_name" content="myk's Blog" />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <link rel="icon" type="image/png" href={image} />
+    <title>{title}</title>
+    <script>
+      import "../scripts/menu.js";
+    </script>
+  </head>
+  <body class="font-sans bg-background text-foreground flex flex-col min-h-screen">
+    <header class="bg-header text-accent shadow-lg flex items-center sticky top-0 z-10 px-4 py-3">
+      <div class="flex items-center">
+        <a href="/"><HeaderLogo width={80} height={80} /></a>
+      </div>
+      <div class="flex space-x-6 ml-auto">
+        <nav class="hidden md:flex text-sm space-x-8">
+          <NavigationLinks />
+        </nav>
+        <button id="menu-toggle" class="md:hidden cursor-pointer text-muted">
+          <Menu />
+        </button>
+      </div>
+    </header>
+    <nav id="mobile-menu" class="hidden md:hidden bg-header text-accent flex flex-col space-y-4 py-3 px-4">
+      <div class="flex flex-col space-y-2">
+        <NavigationLinks />
+      </div>
+    </nav>
+    <main class="flex-1">
+      <slot />
+    </main>
+    <footer class="bg-header text-muted text-sm px-4 py-3 w-full">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div class="flex flex-col space-y-1 md:space-y-0">
+          <p class="mt-2">&copy; {new Date().getFullYear()} myk. All rights reserved.</p>
+        </div>
+        <nav class="flex flex-col space-y-1 md:space-y-0 md:flex-row md:space-x-6">
+          <FancyHoverLink href="/privacy" label="Privacy" />
+          <FancyHoverLink href="/contact" label="Contact" />
+          <FancyHoverLink href="/about" label="About" />
+        </nav>
+        <nav class="flex space-x-3">
+          <SimpleHoverLink href="https://www.github.com/myk42" icon={GithubIcon} target="_blank" />
+          <SimpleHoverLink href="https://www.mastodon.social/@myk" icon={MastodonIcon} target="_blank" />
+          <SimpleHoverLink href="matrix:u/myk:matrix.org?action=chat" icon={MatrixIcon} target="_blank" />
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
