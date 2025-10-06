@@ -1,0 +1,95 @@
+---
+import "../styles/global.css";
+import { NAV_LINKS } from "../config/nav";
+import { SOCIAL_LINKS } from "../config/social";
+import { Menu } from "@lucide/astro";
+
+const {
+  title = "MYK BLOG",
+  description = "A blog about cybersecurity, digital privacy, and technology.",
+  type = "website"
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:image" content={`${Astro.site}/opengraph.png`} />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:site_name" content="MYK BLOG" />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${Astro.site}/opengraph.png`} />
+    <link rel="canonical" href={Astro.url.href} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <div class="header-content">
+          <div class="header-logo">
+            <a href="/" aria-label="Website logo">
+              <img src="/images/logo.png" alt="MYK BLOG" width="200" height="200" loading="eager" decoding="async" />
+            </a>
+          </div>
+          <nav class="header-nav" aria-label="Desktop navigation">
+            {
+              NAV_LINKS.map((link) => (
+                <a href={link.href} aria-label={link.label}>
+                  {link.label}
+                </a>
+              ))
+            }
+          </nav>
+          <div class="header-nav-toggle">
+            <button id="menu-button" type="button" aria-controls="mobile-menu" aria-label="Open menu">
+              <Menu />
+            </button>
+          </div>
+        </div>
+        <nav class="header-mobile-nav hidden" id="mobile-menu" aria-label="Mobile navigation">
+          {
+            NAV_LINKS.map((link) => (
+              <a href={link.href} class="block text-lg" aria-label={link.label}>
+                {link.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+    </header>
+    <div class="page-container">
+      <main>
+        <slot />
+      </main>
+      <footer>
+        <div class="footer-container">
+          <nav class="footer-social-nav" aria-label="Social links">
+            {
+              SOCIAL_LINKS.map(({ href, label, icon: Icon }) => (
+                <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+                  <Icon />
+                </a>
+              ))
+            }
+          </nav>
+        </div>
+      </footer>
+    </div>
+    <script>
+      const button = document.getElementById("menu-button");
+      const menu = document.getElementById("mobile-menu");
+      button?.addEventListener("click", () => menu?.classList.toggle("hidden"));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { formatDate } from "../scripts/date";
+
+const { post, badge = false } = Astro.props as { post: CollectionEntry<"posts">; badge?: boolean };
+---
+
+<div class="card-container">
+  <a href={`/${post.slug}`} class="relative hover:text-foreground" aria-label={`${post.data.category} article`}>
+    <Image
+      src={post.data.image.url}
+      alt={post.data.image.alt}
+      width={640}
+      height={426}
+      loading="eager"
+      decoding="async"
+    />
+    {badge && <span class="card-badge">{post.data.category}</span>}
+  </a>
+  <div class="card-body">
+    <h3 class="card-title">
+      <a href={`/${post.slug}`} aria-label={post.data.title}>{post.data.title}</a>
+    </h3>
+    <p class="card-date">
+      <time datetime={formatDate(post.data.pubDate)}>{formatDate(post.data.pubDate)}</time>
+    </p>
+    <p class="card-description line-clamp-3">{post.data.description}</p>
+  </div>
+</div>

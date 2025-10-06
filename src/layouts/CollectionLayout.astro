@@ -1,0 +1,57 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { ArrowLeft, ArrowRight } from "@lucide/astro";
+import BaseLayout from "./BaseLayout.astro";
+import Card from "../components/Card.astro";
+
+const { page, title, badge = false } = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <div class="collection-container">
+    {
+      page.data.length === 0 ? (
+        <div class="message-container">
+          <p class="message">No posts found</p>
+        </div>
+      ) : (
+        <div class="collection-grid">
+          {page.data.map((post: CollectionEntry<"posts">) => (
+            <Card post={post} badge={badge} />
+          ))}
+        </div>
+      )
+    }
+  </div>
+  <nav class="pagination-controls" aria-label="Pagination controls">
+    {
+      page.lastPage > 1 && (
+        <>
+          {page.url.prev ? (
+            <a href={page.url.prev} rel="prev" class="pagination-link" aria-label="Previous page">
+              <ArrowLeft aria-hidden="true" /> Prev
+            </a>
+          ) : (
+            <button type="button" disabled aria-disabled="true" class="pagination-btn" aria-label="Previous page">
+              <ArrowLeft aria-hidden="true" /> Prev
+            </button>
+          )}
+
+          <span class="pagination-status" aria-current="page" aria-live="polite">
+            {page.currentPage} of {page.lastPage}
+          </span>
+
+          {page.url.next ? (
+            <a href={page.url.next} rel="next" class="pagination-link" aria-label="Next page">
+              Next <ArrowRight aria-hidden="true" />
+            </a>
+          ) : (
+            <button type="button" disabled aria-disabled="true" class="pagination-btn" aria-label="Next page">
+              Next <ArrowRight aria-hidden="true" />
+            </button>
+          )}
+        </>
+      )
+    }
+  </nav>
+</BaseLayout>

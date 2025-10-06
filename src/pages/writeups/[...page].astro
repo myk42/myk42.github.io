@@ -1,0 +1,17 @@
+---
+import type { GetStaticPathsOptions } from "astro";
+import { getCollection } from "astro:content";
+import { PAGINATE_PAGE_SIZE } from "astro:env/client";
+import { sortPostsByDate } from "../../scripts/sort.js";
+import CollectionLayout from "../../layouts/CollectionLayout.astro";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const posts = await getCollection("posts", ({ data }) => data.category === "writeups");
+  const latestPosts = sortPostsByDate(posts);
+  return paginate(latestPosts, { pageSize: PAGINATE_PAGE_SIZE });
+}
+
+const { page } = Astro.props;
+---
+
+<CollectionLayout page={page} title=`MYK WRITEUPS - Page ${page.currentPage}` />

@@ -1,0 +1,220 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@import "./theme.css";
+@import "./typography.css";
+
+@layer base {
+  :root {
+    --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: var(--color-muted) transparent;
+  }
+
+  html {
+    @apply overflow-y-scroll scroll-smooth;
+  }
+
+  body {
+    @apply text-foreground bg-background;
+  }
+
+  main {
+    @apply flex-grow;
+  }
+
+  article {
+    @apply mx-auto max-w-3xl min-w-0 py-8;
+  }
+
+  a {
+    @apply inline-flex items-center gap-2 hover:text-highlight;
+  }
+
+  hr {
+    @apply my-2 border-t border-outline/50;
+  }
+
+  aside {
+    @apply hidden xl:block py-8;
+  }
+
+  .page-container {
+    @apply flex flex-col min-h-screen;
+  }
+}
+
+@layer components {
+  /* HEADER */
+  header {
+    @apply bg-header;
+  }
+
+  .header-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5;
+  }
+
+  .header-content {
+    @apply flex items-center justify-between;
+  }
+
+  .header-logo {
+    @apply flex-shrink-0 text-2xl font-bold;
+  }
+
+  .header-nav {
+    @apply hidden md:flex space-x-10 text-lg;
+  }
+
+  .header-nav-toggle {
+    @apply md:hidden flex items-center;
+  }
+
+  .header-mobile-nav {
+    @apply md:hidden mt-5 space-y-4;
+  }
+
+  /* FOOTER */
+  footer {
+    @apply bg-header py-4;
+  }
+
+  .footer-container {
+    @apply mx-auto text-center;
+  }
+
+  .footer-social-nav {
+    @apply flex flex-wrap justify-center gap-x-4 gap-y-1;
+  }
+
+  /* MESSAGING & HEADINGS */
+  .message-container {
+    @apply w-full h-screen flex items-center justify-center;
+  }
+
+  .message-header {
+    @apply text-heading text-8xl font-bold mb-4;
+  }
+
+  .message {
+    @apply text-xl;
+  }
+
+  .heading {
+    @apply text-heading font-bold text-3xl mb-8;
+  }
+
+  /* COLLECTIONS  */
+  .collection-container {
+    @apply max-w-7xl mx-auto px-6 py-12;
+  }
+
+  .collection-grid {
+    @apply grid gap-8 md:grid-cols-2 lg:grid-cols-3;
+  }
+
+  /* PAGINATION */
+  .pagination-controls {
+    @apply text-sm flex flex-wrap justify-center items-center gap-4 mb-8;
+  }
+
+  .pagination-link,
+  .pagination-btn {
+    @apply inline-flex items-center gap-1.5 px-3 py-2 rounded-md bg-accent text-sm font-medium;
+  }
+
+  .pagination-btn:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  /* CARDS */
+  .card-container {
+    @apply bg-surface rounded-2xl overflow-hidden shadow-lg transition duration-300 hover:-translate-y-1;
+  }
+
+  .card-badge {
+    @apply font-bold bg-header text-xs rounded-full absolute top-3 left-3 px-2 py-0.5;
+  }
+
+  .card-body {
+    @apply flex flex-col gap-2 p-5;
+  }
+
+  .card-title {
+    @apply font-semibold text-xl text-heading;
+  }
+
+  .card-date {
+    @apply text-xs text-muted;
+  }
+
+  .card-description {
+    @apply text-sm;
+  }
+
+  /* POSTS */
+  .post-grid {
+    @apply mx-auto max-w-7xl px-4 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(240px,300px)] lg:gap-10;
+  }
+
+  .post-meta {
+    @apply mt-0 mb-0 flex gap-3;
+  }
+
+  .post-body {
+    @apply mb-8;
+  }
+
+  .post-tags {
+    @apply mt-3 mb-3;
+  }
+
+  .post-tags-title {
+    @apply mb-1 inline-flex items-center gap-2 text-sm uppercase tracking-wide text-muted;
+  }
+
+  .post-tags-list {
+    @apply flex flex-wrap gap-x-2 gap-y-2;
+  }
+
+  .meta-text {
+    @apply inline-flex items-center gap-1 text-sm text-muted;
+  }
+
+  .tag-link {
+    @apply rounded-md bg-surface text-sm text-accent hover:text-highlight px-2 py-1;
+  }
+
+  /* TOC */
+  .toc-container {
+    @apply sticky top-24 rounded-xl border border-surface/40 bg-surface p-4 text-sm;
+  }
+
+  .toc-title {
+    @apply mb-2 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted;
+  }
+
+  .toc-list {
+    @apply flex flex-col gap-1;
+  }
+
+  .toc-link {
+    @apply block hover:underline text-accent hover:text-highlight;
+  }
+
+  /* CODE TOOLS */
+  .code-btn {
+    @apply absolute end-3 -top-3 inline-flex items-center gap-1 rounded border px-2 py-2 text-[12px] leading-none font-medium bg-accent border-background hover:bg-highlight transition;
+  }
+
+  /* PROGRESS BAR */
+  .progress-container {
+    @apply fixed bg-header w-full h-1 top-0 z-10;
+  }
+
+  .progress-bar {
+    @apply bg-accent transition-[width] duration-75 ease-linear h-1 w-0;
+  }
+}

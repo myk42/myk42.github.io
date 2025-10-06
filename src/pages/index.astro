@@ -1,0 +1,19 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import { FRONTPAGE_POST_COUNT } from "astro:env/client";
+import { sortPostsByDate } from "../scripts/sort.js";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Card from "../components/Card.astro";
+
+const posts = await getCollection("posts");
+const latestPosts = sortPostsByDate(posts).slice(0, FRONTPAGE_POST_COUNT);
+---
+
+<BaseLayout>
+  <div class="collection-container">
+    <h2 class="heading">Latest Posts</h2>
+    <div class="collection-grid">
+      {latestPosts.map((post: CollectionEntry<"posts">) => <Card post={post} badge={true} />)}
+    </div>
+  </div>
+</BaseLayout>
