@@ -28,7 +28,7 @@ There are many variations of passages of Lorem Ipsum available, but the majority
 
 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
 
-# Closing remarks
+## Closing remarks
 
 Praesent mollis ligula at quam condimentum, ac rhoncus orci aliquet. Suspendisse quis sagittis odio. Pellentesque lacinia bibendum convallis. Pellentesque quis lectus bibendum, tincidunt nulla quis, lobortis nunc. Donec blandit tellus dapibus dolor tristique, at ultrices erat pellentesque. Cras laoreet, ipsum at imperdiet eleifend, erat purus lacinia arcu, sit amet placerat diam nulla vitae lorem. In sit amet laoreet ex. Nunc porttitor bibendum dapibus. Vestibulum fermentum nibh sit amet tempor lacinia.
 
