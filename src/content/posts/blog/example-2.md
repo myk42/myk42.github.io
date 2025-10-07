@@ -1,6 +1,7 @@
 ---
 title: "Example Blog Post"
 pubDate: 2025-10-05
+featured: false
 description: "This is a simple blog post example"
 author: "myk"
 category: "blog"

@@ -2,12 +2,12 @@
 import type { GetStaticPathsOptions } from "astro";
 import { getCollection } from "astro:content";
 import { PAGINATE_PAGE_SIZE } from "astro:env/client";
-import { sortPostsByDate } from "../../scripts/sort.js";
+import { getNewestPosts } from "../../scripts/sort.js";
 import CollectionLayout from "../../layouts/CollectionLayout.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = await getCollection("posts", ({ data }) => data.category === "tutorials");
-  const latestPosts = sortPostsByDate(posts);
+  const latestPosts = getNewestPosts(posts);
   return paginate(latestPosts, { pageSize: PAGINATE_PAGE_SIZE });
 }
 

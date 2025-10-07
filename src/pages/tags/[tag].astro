@@ -1,6 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
-import { sortPostsByDate } from "../../scripts/sort.js";
+import { getNewestPosts } from "../../scripts/sort.js";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Card from "../../components/Card.astro";
 
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
     const filteredPosts = posts.filter((post) => post.data.tags.includes(tag));
     return {
       params: { tag },
-      props: { posts: sortPostsByDate(filteredPosts) }
+      props: { posts: getNewestPosts(filteredPosts) }
     };
   });
 }

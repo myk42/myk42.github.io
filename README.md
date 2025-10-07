@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.0.2 (Initial Release)
+
+Notes:
+
+- Added support for featured posts
+- Renamed a method to make naming more consistent
+
+TODO:
+
+- Promote `featured posts` in a less obtrusive manner
+- Consider adding pagination to the tags page
+- Style individual pages for consistency
+
 ## 0.0.1 (Initial Release)
 
 Notes:
