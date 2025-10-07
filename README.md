@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.0.2 (Initial Release)
+## 0.0.2 (Feature Update)
 
 Notes:
 
